@@ -8,5 +8,7 @@ contract example {
 
 	string myString = 'hello world';
 
-	functions sayHello() external returns(string myString){}
+	function sayHello() external view returns(string memory ){
+		return myString;
+	}
 }
