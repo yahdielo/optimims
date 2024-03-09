@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-contract tic_tac_toeXO{
+contract tictactoeXO{
 
     address owner;
 
@@ -28,31 +28,50 @@ contract tic_tac_toeXO{
 
     function startGame() external {
 
-        ID++;
         allGames[ID].gameId = ID;
         allGames[game.gameId].player1 = msg.sender;
         allGames[game.gameId].gameStarted = true;
+
         emit GameStarted(ID, msg.sender);
+
+        ID++;
     }
 
-    function addPlayer2(uint256 _gameId, address _player2) internal {
+    function _addPlayer2(uint256 _gameId, address _player2) internal {
+        //add player 2 to the game
         allGames[_gameId].player2 = _player2;
-
+        allGames[_gameId].gameFull = true;
         emit player2Joined(_gameId, _player2);    
     }
 
     function _checkForGames(address _newPlayer) internal {
+        //will iterate in the mapping to find any avaliable game
         for (uint i = 0; i < ID; i++){
             if (allGames[i].gameStarted == true && allGames[i].gameFull == false){
-                addPlayer2(i, _newPlayer);
-                
+                _addPlayer2(i, _newPlayer);
             }
         }
-        
     }
+
     function joinAgame() external {
         //this function will joined you to any avaliable game
+        _checkForGames(msg.sender);
     } 
+
+    function challengeFriend(address _player2) external {
+
+        allGames[ID].gameId = ID;
+        allGames[game.gameId].player1 = msg.sender;
+        allGames[game.gameId].player2 = _player2;
+        allGames[game.gameId].gameStarted = true;
+        allGames[game.gameId].gameFull = true;
+
+        emit GameStarted(ID, msg.sender);
+
+        ID++;
+    }
+
+    
 
 
 }
