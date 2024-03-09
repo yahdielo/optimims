@@ -8,5 +8,6 @@ to set OP sepolia in your metamask:
 	https://revoke.cash/learn/wallets/add-network/optimism-sepolia
 
 
-prestamo PPP
-jorge betancur
+Op sepolia scan:
+	https://sepolia-optimism.etherscan.io
+ x
