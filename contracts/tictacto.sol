@@ -26,6 +26,10 @@ contract tictactoeXO{
     event GameStarted(uint256 _Id, address _player1);
     event player2Joined(uint256 _id, address _player2);
 
+    constructor() {
+        owner = msg.sender;
+    }
+
     function startGame() external {
 
         allGames[ID].gameId = ID;
