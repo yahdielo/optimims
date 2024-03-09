@@ -24,6 +24,7 @@ contract tic_tac_toeXO{
     mapping(uint256 => Game) allGames;
 
     event GameStarted(uint256 _Id, address _player1);
+    event player2Joined(uint256 _id, address _player2);
 
     function startGame() external {
 
@@ -37,7 +38,7 @@ contract tic_tac_toeXO{
     function addPlayer2(uint256 _gameId, address _player2) internal {
         allGames[_gameId].player2 = _player2;
 
-        emit player2Joined()
+        emit player2Joined(_gameId, _player2);    
     }
 
     function _checkForGames(address _newPlayer) internal {
