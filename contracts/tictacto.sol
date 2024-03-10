@@ -82,6 +82,11 @@ contract tictactoe {
         ID++;
     }
 
+    function _checkWinner(uint256 _gameId) internal returns(uint256){
+        //this function will scan for combinations of winner and return 1 if player 1 won and 2 if player 2 won
+        // and 0 if we still dont have a winner;
+    }
+
     //this example bellow represent the board and the spaces
     //  1| 2| 3
     //  4| 5| 6
@@ -170,6 +175,9 @@ contract tictactoe {
             }
             allGames[_gameId].p2Move++;
             emit playerMadeHisMove(_gameId, msg.sender);
+        }
+        if (allGames[_gameId].p1Move >= 3){
+            _checkWinner(_gameId);
         }
     }
 
