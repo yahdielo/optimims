@@ -171,6 +171,15 @@ contract tictactoe {
         }
     }
 
+    function _isPlayer(uint256 _gameId, address _player) internal view returns(bool){
+        if(allGames[_gameId].player1 == _player || allGames[_gameId].player2 == _player){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //this example bellow represent the board and the spaces
     //  1| 2| 3
     //  4| 5| 6
@@ -180,6 +189,7 @@ contract tictactoe {
     function makeMove(uint256 _gameId, uint256 _move) external {
         require(allGames[_gameId].gameFull == true, "waiting for player2");
         require(allGames[_gameId].gameFinish == false, "we already have a winner");
+        require(_isPlayer(_gameId, msg.sender), "not a game participant");
         
         if (msg.sender == allGames[_gameId].player1){
             require(allGames[_gameId].p2Move == allGames[_gameId].p1Move, "Not your turn");
