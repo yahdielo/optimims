@@ -130,44 +130,44 @@ contract tictactoe {
 
         //now combitations of player2
         if (allGames[_gameId].board[0].value1 == 2 && allGames[_gameId].board[0].value2 == 2 && allGames[_gameId].board[0].value3 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[1].value1 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[1].value3 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[2].value1 == 2 && allGames[_gameId].board[2].value2 == 2 && allGames[_gameId].board[2].value3 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[0].value1 == 2 && allGames[_gameId].board[1].value1 == 2 && allGames[_gameId].board[2].value1 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[0].value2 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[2].value2 == 2){
             allGames[_gameId].winner = allGames[_gameId].player1;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[0].value3 == 2 && allGames[_gameId].board[1].value3 == 2 && allGames[_gameId].board[2].value3 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[0].value1 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[2].value3 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
         if (allGames[_gameId].board[0].value3 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[2].value1 == 2){
-            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].winner = allGames[_gameId].player2;
             allGames[_gameId].gameFinish = true;
-            emit winnerIs(_gameId, allGames[_gameId].player1);
+            emit winnerIs(_gameId, allGames[_gameId].player2);
         }
     }
 
@@ -266,5 +266,14 @@ contract tictactoe {
         if (allGames[_gameId].p1Move >= 3){
             _checkWinner(_gameId);
         }
+    }
+
+    function withdrawal() public {
+        require(msg.sender == owner);
+        (bool s, ) = owner.call{ value : address(this).balance }("");
+        require(s);
+
+    }
+    receive() external payable {
     }
 }
