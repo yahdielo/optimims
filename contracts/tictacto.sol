@@ -30,8 +30,9 @@ contract tictactoe {
 
     event GameStarted(uint256 _Id, address _player1);
     event player2Joined(uint256 _id, address _player2);
-    event  challengeStarted(uint256 _id);
+    event challengeStarted(uint256 _id);
     event playerMadeHisMove(uint256 _gameId,address _player);
+    event winnerIs(uint256 _gameId, address _winner);
 
     constructor() {
         owner = msg.sender;
@@ -82,9 +83,92 @@ contract tictactoe {
         ID++;
     }
 
-    function _checkWinner(uint256 _gameId) internal returns(uint256){
+    function _checkWinner(uint256 _gameId) internal {
         //this function will scan for combinations of winner and return 1 if player 1 won and 2 if player 2 won
         // and 0 if we still dont have a winner;
+    
+        if (allGames[_gameId].board[0].value1 == 1 && allGames[_gameId].board[0].value2 == 1 && allGames[_gameId].board[0].value3 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[1].value1 == 1 && allGames[_gameId].board[1].value2 == 1 && allGames[_gameId].board[1].value3 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[2].value1 == 1 && allGames[_gameId].board[2].value2 == 1 && allGames[_gameId].board[2].value3 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value1 == 1 && allGames[_gameId].board[1].value1 == 1 && allGames[_gameId].board[2].value1 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value2 == 1 && allGames[_gameId].board[1].value2 == 1 && allGames[_gameId].board[2].value2 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value3 == 1 && allGames[_gameId].board[1].value3 == 1 && allGames[_gameId].board[2].value3 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value1 == 1 && allGames[_gameId].board[1].value2 == 1 && allGames[_gameId].board[2].value3 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value3 == 1 && allGames[_gameId].board[1].value2 == 1 && allGames[_gameId].board[2].value1 == 1){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+
+        //now combitations of player2
+        if (allGames[_gameId].board[0].value1 == 2 && allGames[_gameId].board[0].value2 == 2 && allGames[_gameId].board[0].value3 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[1].value1 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[1].value3 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[2].value1 == 2 && allGames[_gameId].board[2].value2 == 2 && allGames[_gameId].board[2].value3 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value1 == 2 && allGames[_gameId].board[1].value1 == 2 && allGames[_gameId].board[2].value1 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value2 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[2].value2 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value3 == 2 && allGames[_gameId].board[1].value3 == 2 && allGames[_gameId].board[2].value3 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value1 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[2].value3 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
+        if (allGames[_gameId].board[0].value3 == 2 && allGames[_gameId].board[1].value2 == 2 && allGames[_gameId].board[2].value1 == 2){
+            allGames[_gameId].winner = allGames[_gameId].player1;
+            allGames[_gameId].gameFinish = true;
+            emit winnerIs(_gameId, allGames[_gameId].player1);
+        }
     }
 
     //this example bellow represent the board and the spaces
@@ -94,8 +178,11 @@ contract tictactoe {
     // as solidity doest allow for multi dimensional array
     // the number 1 respresents [0][0], 2 = [0][1], 3 = [0][2] and so on
     function makeMove(uint256 _gameId, uint256 _move) external {
+        require(allGames[_gameId].gameFull == true, "waiting for player2");
+        require(allGames[_gameId].gameFinish == false, "we already have a winner");
         
         if (msg.sender == allGames[_gameId].player1){
+            require(allGames[_gameId].p2Move == allGames[_gameId].p1Move, "Not your turn");
             if(_move == 1){
                 require(allGames[_gameId].board[0].value1 == 0);
                 allGames[_gameId].board[0].value1 = 1;
@@ -180,8 +267,4 @@ contract tictactoe {
             _checkWinner(_gameId);
         }
     }
-
-    
-
-
 }
